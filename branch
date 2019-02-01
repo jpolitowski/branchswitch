@@ -1,0 +1,20 @@
+function branch() {
+  BRANCH=$(git branch | grep "$1")
+  CYAN='\033[0;36m'
+  CURRENT="* "
+  NC='\033[0m'
+  NL='
+  '
+  
+  case $BRANCH in 
+    *"$NL"*) echo -e "${CYAN}Multiple matches found:${NC}"
+             echo "$BRANCH";;
+          *) CLEANED="$(echo -e "${BRANCH}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
+             if [[ $CLEANED == $CURRENT* ]]
+               then
+                 echo "${CYAN}You already checked out the only result:${NC} $CLEANED $NL"
+               else
+                 git checkout "$CLEANED"
+             fi
+  esac
+}
