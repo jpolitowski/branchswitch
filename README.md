@@ -2,7 +2,7 @@
 Function for .bashrc or .zshrc to quickly switch and search branches
 
 Usage: 
-branch string
+branch 'searchable string, without quotes'
 
 If there is only one result, git will checkout that branch. 
 The function will display a list of matches if there is more than one result. 
